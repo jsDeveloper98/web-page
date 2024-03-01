@@ -1,7 +1,11 @@
-import { Registration } from "@/app/components/registration";
+import { RegistrationForm } from "@/components/registrationForm";
 
 const RegistrationPage = () => {
-  return <Registration />;
+  return (
+    <div className="RegistrationPage h-screen flex items-center justify-center">
+      <RegistrationForm />
+    </div>
+  );
 };
 
 export default RegistrationPage;

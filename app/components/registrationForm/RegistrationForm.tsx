@@ -1,26 +1,19 @@
 "use client";
-
 import { Button, Form, Input } from "antd";
 
-import { validateField } from "@/app/utils/validators";
-import { AuthService } from "@/app/services/AuthService";
+import { validateField } from "@/utils/validators";
+import { AuthService } from "@/services/Auth.service";
 
-interface IFieldType {
-  email: string;
-  password: string;
-}
-
-export const Login = () => {
-  const handleSubmit = (data: IFieldType) => {
-    AuthService.login(data);
-    console.log({ data }); // You can handle form submission here
+export const RegistrationForm = () => {
+  const handleSubmit = (data: IAuthValues) => {
+    AuthService.register(data);
   };
 
   return (
-    <div className="Registration h-screen flex items-center justify-center flex-col">
-      <h1 className="mb-5">Login</h1>
+    <div className="RegistrationForm">
+      <h1 className="mb-5 text-center">Registration</h1>
       <Form labelCol={{ span: 8 }} onFinish={handleSubmit} autoComplete="off">
-        <Form.Item<IFieldType>
+        <Form.Item<IAuthValues>
           label="Email"
           name="email"
           rules={validateField(["required", "email"])}
@@ -28,7 +21,7 @@ export const Login = () => {
           <Input />
         </Form.Item>
 
-        <Form.Item<IFieldType>
+        <Form.Item<IAuthValues>
           label="Password"
           name="password"
           rules={validateField(["required", "input"])}
@@ -38,7 +31,7 @@ export const Login = () => {
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit">
-            Submit
+            Register
           </Button>
         </Form.Item>
       </Form>

@@ -1,13 +1,11 @@
-// import { ILoginFormValues } from "../components/login-form/LoginForm.types";
-import { BASE_URL } from "@/app/constants";
-import { request } from "../utils/request";
-import { IRegFormValues } from "@/app/components/registration/Registration.types";
+import { BASE_URL } from "@/constants";
+import { request } from "@/utils/request";
 
 class AuthS {
   async register(values: IAuthValues) {
     return request<ISuccessResponse<IAuthData>>({
       url: `${BASE_URL}/auth/register`,
-      options: {
+      requestInit: {
         body: values,
         method: "POST",
       },
@@ -17,7 +15,7 @@ class AuthS {
   async login(values: IAuthValues) {
     return request<ISuccessResponse<IAuthData>>({
       url: `${BASE_URL}/auth/login`,
-      options: {
+      requestInit: {
         body: values,
         method: "POST",
       },

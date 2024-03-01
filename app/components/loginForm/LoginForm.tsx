@@ -1,21 +1,19 @@
 "use client";
 import { Button, Form, Input } from "antd";
 
-import { validateField } from "@/app/utils/validators";
-import { IRegFormValues } from "@/app/components/registration/Registration.types";
-import { AuthService } from "@/app/services/AuthService";
+import { validateField } from "@/utils/validators";
+import { AuthService } from "@/services/Auth.service";
 
-export const Registration = () => {
-  const handleSubmit = (data: IRegFormValues) => {
-    console.log("%c data ===>", "color: #90ee90", data);
-    AuthService.register(data);
+export const LoginForm = () => {
+  const handleSubmit = (data: IAuthValues) => {
+    return AuthService.login(data);
   };
 
   return (
-    <div className="Registration h-screen flex items-center justify-center flex-col">
-      <h1 className="mb-5">Registration</h1>
+    <div className="LoginForm">
+      <h1 className="mb-5 text-center">Login</h1>
       <Form labelCol={{ span: 8 }} onFinish={handleSubmit} autoComplete="off">
-        <Form.Item<IRegFormValues>
+        <Form.Item<IAuthValues>
           label="Email"
           name="email"
           rules={validateField(["required", "email"])}
@@ -23,7 +21,7 @@ export const Registration = () => {
           <Input />
         </Form.Item>
 
-        <Form.Item<IRegFormValues>
+        <Form.Item<IAuthValues>
           label="Password"
           name="password"
           rules={validateField(["required", "input"])}
@@ -33,7 +31,7 @@ export const Registration = () => {
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit">
-            Submit
+            Login
           </Button>
         </Form.Item>
       </Form>

@@ -1,17 +1,16 @@
 "use client";
-
 import Link from "next/link";
 import { Menu, type MenuProps } from "antd";
 import { usePathname } from "next/navigation";
 
 const items: MenuProps["items"] = [
   {
-    label: <Link href="/registration">Registration</Link>,
     key: "registration",
+    label: <Link href="/registration">Registration</Link>,
   },
   {
-    label: <Link href="/login">Login</Link>,
     key: "login",
+    label: <Link href="/login">Login</Link>,
   },
 ];
 
