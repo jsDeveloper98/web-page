@@ -1,6 +1,3 @@
-import { StorageService } from "@/services/Storage.service";
-import { USER_DATA_STORAGE_KEY } from "@/constants/storageKeys";
-
 interface IRequestInit {
   body?: any;
   headers?: { [key: string]: string };
@@ -19,17 +16,18 @@ export const request = async <T>({
   requestInit = { method: "GET" },
 }: IProps): Promise<T> => {
   try {
-    const userData = StorageService.get<IAuthData>(USER_DATA_STORAGE_KEY);
-
     requestInit.headers = requestInit.headers || {};
-    requestInit.headers.Authorization = `Bearer ${userData?.token}`;
 
     if (!isFormData) {
       requestInit.body = JSON.stringify(requestInit.body);
       requestInit.headers["Content-Type"] = "application/json";
     }
 
-    const res = await fetch(url, requestInit);
+    const res = await fetch(url, {
+      ...requestInit,
+      credentials: "include",
+    });
+
     const data = await res.json();
 
     if (!res.ok) {

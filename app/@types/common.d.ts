@@ -1,6 +1,6 @@
-interface IAuthData {
+interface IUserData {
+  id: string;
   token: string;
-  userId: string;
 }
 
 interface ISuccessResponse<T> {

@@ -2,43 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
   height: 100vh;
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
 }
 
 .NavBar > ul {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: rgb(231, 231, 227);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.NavBar > .ant-skeleton {
+  border-bottom: 1px solid rgba(5, 5, 5, 0.06);
+  background-color: rgb(231, 231, 227);
+}
+
+.logout-button {
+  margin-left: auto !important;
+}
+
+.LoginPage {
+  height: calc(100vh - 50px);
+}
+
+.LoginPageLoader {
+  height: calc(100vh - 50px);
+}
+
+.LoginPageLoader > div {
+  width: 282px;
+}
+
+.RegistrationPage {
+  height: calc(100vh - 50px);
+}
+
+.RegistrationPageLoader {
+  height: calc(100vh - 50px);
+}
+
+.RegistrationPageLoader > div {
+  width: 282px;
 }

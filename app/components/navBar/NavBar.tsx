@@ -1,29 +1,22 @@
 "use client";
-import Link from "next/link";
-import { Menu, type MenuProps } from "antd";
-import { usePathname } from "next/navigation";
+import { Menu, Skeleton } from "antd";
 
-const items: MenuProps["items"] = [
-  {
-    key: "registration",
-    label: <Link href="/registration">Registration</Link>,
-  },
-  {
-    key: "login",
-    label: <Link href="/login">Login</Link>,
-  },
-];
+import { useNavBar } from "./NavBar.hooks";
 
 export const NavBar = () => {
-  const pathname = usePathname();
+  const { activePath, filteredNavItems, loading } = useNavBar();
 
   return (
     <div className="NavBar">
-      <Menu
-        items={items}
-        mode="horizontal"
-        selectedKeys={[pathname.slice(1)]}
-      />
+      {loading ? (
+        <Skeleton active title={false} loading={true} />
+      ) : (
+        <Menu
+          mode="horizontal"
+          activeKey={activePath}
+          items={filteredNavItems}
+        />
+      )}
     </div>
   );
 };

@@ -7,6 +7,10 @@ class StorageS {
   set(key: string, value: any): void {
     localStorage.setItem(key, JSON.stringify(value));
   }
+
+  remove(key: string): void {
+    localStorage.removeItem(key);
+  }
 }
 
 export const StorageService = new StorageS();

@@ -2,12 +2,11 @@
 import { Button, Form, Input } from "antd";
 
 import { validateField } from "@/utils/validators";
-import { AuthService } from "@/services/Auth.service";
+
+import { useLoginForm } from "./LoginForm.hooks";
 
 export const LoginForm = () => {
-  const handleSubmit = (data: IAuthValues) => {
-    return AuthService.login(data);
-  };
+  const { handleSubmit } = useLoginForm();
 
   return (
     <div className="LoginForm">

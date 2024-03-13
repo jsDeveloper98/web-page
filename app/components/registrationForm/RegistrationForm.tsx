@@ -2,12 +2,11 @@
 import { Button, Form, Input } from "antd";
 
 import { validateField } from "@/utils/validators";
-import { AuthService } from "@/services/Auth.service";
+
+import { useRegistrationForm } from "./RegistrationForm.hooks";
 
 export const RegistrationForm = () => {
-  const handleSubmit = (data: IAuthValues) => {
-    AuthService.register(data);
-  };
+  const { handleSubmit } = useRegistrationForm();
 
   return (
     <div className="RegistrationForm">

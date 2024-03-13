@@ -2,7 +2,7 @@ import { RegistrationForm } from "@/components/registrationForm";
 
 const RegistrationPage = () => {
   return (
-    <div className="RegistrationPage h-screen flex items-center justify-center">
+    <div className="RegistrationPage flex items-center justify-center">
       <RegistrationForm />
     </div>
   );
