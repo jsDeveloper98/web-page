@@ -12,7 +12,7 @@ export const AppWrapper = ({ children }: { children: ReactNode }) => {
     <div className="AppWrapper h-screen">
       <AntdRegistry>
         <NavBar />
-        <main>{children}</main>
+        <main className="p-10">{children}</main>
       </AntdRegistry>
     </div>
   );

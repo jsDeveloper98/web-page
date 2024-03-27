@@ -6,7 +6,12 @@ import { usePathname, useRouter } from "next/navigation";
 
 import { useStore } from "@/store/useStore";
 import { AuthService } from "@/services/Auth.service";
-import { HOME_PATH, LOGIN_PATH, REGISTRATION_PATH } from "@/constants/paths";
+import {
+  HOME_PATH,
+  LOGIN_PATH,
+  MY_POSTS_PATH,
+  REGISTRATION_PATH,
+} from "@/constants/paths";
 import {
   AUTHORIZED_ROUTES_PATHS,
   UNAUTHORIZED_ROUTES_PATHS,
@@ -41,6 +46,10 @@ export const useNavBar = () => {
       {
         key: HOME_PATH,
         label: <Link href={HOME_PATH}>Home</Link>,
+      },
+      {
+        key: MY_POSTS_PATH,
+        label: <Link href={MY_POSTS_PATH}>My Posts</Link>,
       },
     ],
     []

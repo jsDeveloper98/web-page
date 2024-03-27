@@ -1,7 +1,9 @@
+import { CardList } from "@/components/cardList";
+
 const MyPostsPage = () => {
   return (
     <div className="MyPostsPage ">
-      <h1>MyPostsPage</h1>
+      <CardList />
     </div>
   );
 };

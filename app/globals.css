@@ -2,43 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  height: 100vh;
+main {
+  height: calc(100vh - 46px);
 }
 
 .NavBar > ul {
   background-color: rgb(231, 231, 227);
 }
 
-.NavBar > .ant-skeleton {
-  border-bottom: 1px solid rgba(5, 5, 5, 0.06);
+.NavBar,
+.ant-skeleton {
   background-color: rgb(231, 231, 227);
+}
+
+.NavBar,
+.ant-skeleton-paragraph {
+  height: 46px;
 }
 
 .logout-button {
   margin-left: auto !important;
 }
 
-.LoginPage {
-  height: calc(100vh - 50px);
-}
-
-.LoginPageLoader {
-  height: calc(100vh - 50px);
-}
-
 .LoginPageLoader > div {
-  width: 282px;
-}
-
-.RegistrationPage {
-  height: calc(100vh - 50px);
-}
-
-.RegistrationPageLoader {
-  height: calc(100vh - 50px);
+  width: 288px;
 }
 
 .RegistrationPageLoader > div {
-  width: 282px;
+  width: 288px;
+}
+
+.ant-modal-header,
+.ant-modal-title {
+  text-align: center;
 }
