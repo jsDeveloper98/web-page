@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import Link from "next/link";
+import compact from "lodash/compact";
 import { useShallow } from "zustand/react/shallow";
 import { ItemType } from "antd/es/menu/hooks/useItems";
 import { usePathname, useRouter } from "next/navigation";
@@ -9,10 +10,8 @@ import { AuthService } from "@/services/Auth.service";
 import {
   HOME_PATH,
   LOGIN_PATH,
-  MY_POSTS_PATH,
+  MY_PRODUCTS_PATH,
   REGISTRATION_PATH,
-} from "@/constants/paths";
-import {
   AUTHORIZED_ROUTES_PATHS,
   UNAUTHORIZED_ROUTES_PATHS,
 } from "@/constants/paths";
@@ -24,7 +23,7 @@ export const useNavBar = () => {
   const {
     loading,
     setUserData,
-    userData: { token },
+    userData: { token, role },
   } = useStore(
     useShallow(({ userData, loading, setUserData }) => ({
       loading,
@@ -48,8 +47,9 @@ export const useNavBar = () => {
         label: <Link href={HOME_PATH}>Home</Link>,
       },
       {
-        key: MY_POSTS_PATH,
-        label: <Link href={MY_POSTS_PATH}>My Posts</Link>,
+        key: MY_PRODUCTS_PATH,
+        label: <Link href={MY_PRODUCTS_PATH}>My Products</Link>,
+        permissionType: "admin",
       },
     ],
     []
@@ -63,25 +63,40 @@ export const useNavBar = () => {
       onClick: () => {
         AuthService.logout().then(() => {
           setUserData({
-            id: null,
+            role: null,
             token: null,
+            userId: null,
           });
           router.push(LOGIN_PATH);
         });
       },
     }),
-    []
+    [router, setUserData]
   );
 
-  const filteredNavItems: ItemType[] = items.filter((item) => {
-    if (token && AUTHORIZED_ROUTES_PATHS.includes(item.key)) {
-      return item;
-    }
+  const filteredNavItems: ItemType[] = useMemo(
+    () =>
+      compact(
+        items.map(({ permissionType, ...item }) => {
+          const isAuthorizedRoute =
+            token && AUTHORIZED_ROUTES_PATHS.includes(item.key);
+          const isUnauthorizedRoute =
+            !token && UNAUTHORIZED_ROUTES_PATHS.includes(item.key);
 
-    if (!token && UNAUTHORIZED_ROUTES_PATHS.includes(item.key)) {
-      return item;
-    }
-  });
+          if (
+            isAuthorizedRoute &&
+            (!permissionType || permissionType === role)
+          ) {
+            return item;
+          }
+
+          if (isUnauthorizedRoute) {
+            return item;
+          }
+        })
+      ),
+    [items, role, token]
+  );
 
   return {
     loading,

@@ -1,6 +1,7 @@
 interface IUserData {
-  id: string;
   token: string;
+  userId: string;
+  role: "admin" | "user";
 }
 
 interface ISuccessResponse<T> {
@@ -11,4 +12,12 @@ interface ISuccessResponse<T> {
 interface IAuthValues {
   email: string;
   password: string;
+}
+
+interface IProduct {
+  _id: string;
+  title: string;
+  image: string;
+  createdAt: string;
+  description: string;
 }

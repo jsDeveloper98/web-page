@@ -4,7 +4,7 @@ import { request } from "@/utils/request";
 class AuthS {
   async register(values: IAuthValues) {
     return request<ISuccessResponse<IUserData>>({
-      url: `${BASE_URL}/auth/register`,
+      url: `${BASE_URL}/api/auth/register`,
       requestInit: {
         body: values,
         method: "POST",
@@ -14,7 +14,7 @@ class AuthS {
 
   async login(values: IAuthValues) {
     return request<ISuccessResponse<IUserData>>({
-      url: `${BASE_URL}/auth/login`,
+      url: `${BASE_URL}/api/auth/login`,
       requestInit: {
         body: values,
         method: "POST",
@@ -24,13 +24,13 @@ class AuthS {
 
   async checkAuth() {
     return request<ISuccessResponse<IUserData | null>>({
-      url: `${BASE_URL}/auth/check`,
+      url: `${BASE_URL}/api/auth/check`,
     });
   }
 
   async logout() {
     return request<ISuccessResponse<null>>({
-      url: `${BASE_URL}/auth/logout`,
+      url: `${BASE_URL}/api/auth/logout`,
     });
   }
 }

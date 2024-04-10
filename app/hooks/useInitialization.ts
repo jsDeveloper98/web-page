@@ -19,5 +19,5 @@ export const useInitialization = () => {
       }
       setLoading(false);
     });
-  }, []);
+  }, [setLoading, setUserData]);
 };

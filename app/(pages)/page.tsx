@@ -4,7 +4,6 @@ import { request } from "@/utils/request";
 const Home = () => {
   return (
     <div>
-      xzczxczxczxc
       <h1>Home</h1>
       <h1>Home</h1>
     </div>

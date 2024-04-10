@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 main {
+  min-height: calc(100vh - 46px);
   height: calc(100vh - 46px);
 }
 
-.NavBar > ul {
-  background-color: rgb(231, 231, 227);
+body {
+  background-color: rgb(49, 49, 49);
 }
 
-.NavBar,
-.ant-skeleton {
-  background-color: rgb(231, 231, 227);
+h1 {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .NavBar,
@@ -35,4 +35,8 @@ main {
 .ant-modal-header,
 .ant-modal-title {
   text-align: center;
+}
+
+.ant-card-cover {
+  height: 320px;
 }

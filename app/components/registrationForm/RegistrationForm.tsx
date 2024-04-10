@@ -6,7 +6,7 @@ import { validateField } from "@/utils/validators";
 import { useRegistrationForm } from "./RegistrationForm.hooks";
 
 export const RegistrationForm = () => {
-  const { handleSubmit } = useRegistrationForm();
+  const { handleSubmit, loading } = useRegistrationForm();
 
   return (
     <div className="RegistrationForm">
@@ -29,7 +29,7 @@ export const RegistrationForm = () => {
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit">
+          <Button loading={loading} type="primary" htmlType="submit">
             Register
           </Button>
         </Form.Item>
