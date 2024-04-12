@@ -14,6 +14,12 @@ interface IAuthValues {
   password: string;
 }
 
+interface IProductValues {
+  image: any;
+  title: string;
+  description: string;
+}
+
 interface IProduct {
   _id: string;
   title: string;

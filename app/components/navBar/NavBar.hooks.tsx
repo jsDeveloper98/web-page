@@ -59,7 +59,7 @@ export const useNavBar = () => {
     () => ({
       key: "logout",
       label: "Logout",
-      className: "logout-button",
+      className: "!ml-auto",
       onClick: () => {
         AuthService.logout().then(() => {
           setUserData({

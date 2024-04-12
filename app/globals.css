@@ -7,10 +7,6 @@ main {
   height: calc(100vh - 46px);
 }
 
-body {
-  background-color: rgb(49, 49, 49);
-}
-
 h1 {
   color: rgba(255, 255, 255, 0.85);
 }
@@ -20,16 +16,12 @@ h1 {
   height: 46px;
 }
 
-.logout-button {
-  margin-left: auto !important;
-}
-
 .LoginPageLoader > div {
-  width: 288px;
+  width: 282px;
 }
 
 .RegistrationPageLoader > div {
-  width: 288px;
+  width: 282px;
 }
 
 .ant-modal-header,
