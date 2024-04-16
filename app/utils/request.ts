@@ -1,7 +1,7 @@
 interface IRequestInit {
   body?: any;
   headers?: { [key: string]: string };
-  method?: "GET" | "POST" | "PUT" | "PATCH";
+  method?: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 }
 
 interface IProps {

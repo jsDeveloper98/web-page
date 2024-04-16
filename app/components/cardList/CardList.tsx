@@ -1,6 +1,7 @@
 import { Card } from "antd";
 import Image from "next/image";
 import Meta from "antd/es/card/Meta";
+import { DeleteOutlined } from "@ant-design/icons";
 
 import { BASE_URL } from "@/constants";
 
@@ -11,35 +12,45 @@ export interface ICard {
   description: string;
 }
 
-interface IProps {
-  cards: ICard[];
+interface ICardAction {
+  key: string;
+  className: string;
+  onClick: (id: string) => void;
 }
 
-export const CardList = ({ cards }: IProps) => {
+interface IProps {
+  cards: ICard[];
+  actions?: ICardAction[];
+}
+
+export const CardList = ({ cards, actions = [] }: IProps) => {
   return (
-    <div
-      style={{
-        display: "grid",
-        rowGap: "50px",
-        justifyContent: "space-between",
-        gridTemplateColumns: "auto auto auto auto auto",
-      }}
-    >
+    <div className="CardList grid grid-cols-5 justify-between gap-y-12">
       {cards.map(({ _id, description, title, imgUrl }) => (
         <Card
           hoverable
           key={_id}
-          style={{ width: 240 }}
+          className="w-60"
           cover={
-            true ? (
-              <Image
-                alt="example"
-                width={300}
-                height={500}
-                src={`${BASE_URL}/${imgUrl}`}
-              />
-            ) : null
+            <Image
+              priority
+              alt={title}
+              width={240}
+              height={320}
+              src={`${BASE_URL}/${imgUrl}`}
+            />
           }
+          actions={actions.map((action) => {
+            if (action.key === "remove") {
+              return (
+                <DeleteOutlined
+                  key={action.key}
+                  className={action.className}
+                  onClick={() => action.onClick(_id)}
+                />
+              );
+            }
+          })}
         >
           <Meta title={title} description={description} />
         </Card>

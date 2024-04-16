@@ -32,3 +32,52 @@ h1 {
 .ant-card-cover {
   height: 320px;
 }
+
+.ant-card-actions {
+  height: 50px;
+}
+
+.ant-card-actions > li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ant-card-actions > li > span {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.ant-card:hover .delete-icon {
+  display: block !important;
+}
+
+.ant-card .delete-icon {
+  display: none !important;
+}
+
+@media (max-width: 1535px) {
+  .CardList {
+    grid-template-columns: auto auto auto auto;
+  }
+}
+
+@media (max-width: 1280px) {
+  .CardList {
+    grid-template-columns: auto auto auto;
+  }
+}
+
+@media (max-width: 1024px) {
+  .CardList {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media (max-width: 580px) {
+  .CardList {
+    grid-template-columns: auto;
+    justify-content: center;
+  }
+}

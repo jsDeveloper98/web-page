@@ -12,6 +12,14 @@ class ProductS {
       },
     });
   }
+
+  async delete(id: string) {
+    // TODO: HOVO change any to proper type
+    return request<ISuccessResponse<any>>({
+      url: `${BASE_URL}/api/users/${id}/products`,
+      requestInit: { method: "DELETE" },
+    });
+  }
 }
 
 export const ProductService = new ProductS();

@@ -11,6 +11,12 @@ export const useMyProducts = (initialProducts: IProduct[]) => {
     setProducts((prevState) => [product, ...prevState]);
   };
 
+  const afterProductRemoved = (id: string) => {
+    setProducts((prevState) =>
+      prevState.filter((product) => product._id !== id)
+    );
+  };
+
   const productCards = useMemo(
     (): ICard[] =>
       products.map(({ _id, description, title, image }) => ({
@@ -22,5 +28,11 @@ export const useMyProducts = (initialProducts: IProduct[]) => {
     [products]
   );
 
-  return { isOpen, afterProductCreation, productCards, setIsOpen };
+  return {
+    isOpen,
+    setIsOpen,
+    productCards,
+    afterProductRemoved,
+    afterProductCreation,
+  };
 };
