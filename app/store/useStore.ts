@@ -6,7 +6,6 @@ interface IState {
   setLoading: (loading: IState["loading"]) => void;
   setUserData: (userData: IState["userData"]) => void;
   userData: {
-    userId: string | null;
     token: string | null;
     role: "admin" | "user" | null;
   };
@@ -21,7 +20,6 @@ export const useStore = create<IState>()(
       userData: {
         role: null,
         token: null,
-        userId: null,
       },
     }))
   )

@@ -28,6 +28,10 @@ export const request = async <T>({
       credentials: "include",
     });
 
+    if (res.status === 401) {
+      window.location.href = "/login";
+    }
+
     const data = await res.json();
 
     if (!res.ok) {

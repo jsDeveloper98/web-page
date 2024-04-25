@@ -1,6 +1,5 @@
 interface IUserData {
   token: string;
-  userId: string;
   role: "admin" | "user";
 }
 

@@ -26,7 +26,6 @@ export const config = {
 
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get("token")?.value;
-  const userId = request.cookies.get("userId")?.value;
 
   if (!token && AUTHORIZED_ROUTES_PATHS.includes(request.nextUrl.pathname)) {
     const absoluteURL = new URL("/login", request.nextUrl.origin);
@@ -42,7 +41,6 @@ export async function middleware(request: NextRequest) {
 
   const headers = new Headers(request.headers);
   headers.set("token", token || "");
-  headers.set("userId", userId || "");
 
   return NextResponse.next({ request: { headers } });
 }

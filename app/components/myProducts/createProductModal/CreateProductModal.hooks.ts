@@ -2,8 +2,7 @@ import { useState } from "react";
 import { Form, message } from "antd";
 import { RcFile } from "antd/es/upload";
 
-import { useStore } from "@/store/useStore";
-import { handleError, verifyAuth } from "@/utils";
+import { handleError } from "@/utils";
 import { ProductService } from "@/services/Product.service";
 
 export const useCreateProductModal = (
@@ -12,7 +11,6 @@ export const useCreateProductModal = (
 ) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState<boolean>(false);
-  const { userId } = useStore((store) => store.userData);
 
   const handleSubmit = (values: IProductValues) => {
     const formData = new FormData();
@@ -23,7 +21,7 @@ export const useCreateProductModal = (
     formData.append("image", image[0].originFileObj);
 
     setLoading(true);
-    ProductService.create(formData, verifyAuth(userId))
+    ProductService.create(formData)
       .then((data) => {
         onSuccess(data.data);
       })

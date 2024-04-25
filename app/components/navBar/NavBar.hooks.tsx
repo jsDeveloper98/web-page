@@ -65,7 +65,6 @@ export const useNavBar = () => {
           setUserData({
             role: null,
             token: null,
-            userId: null,
           });
           router.push(LOGIN_PATH);
         });

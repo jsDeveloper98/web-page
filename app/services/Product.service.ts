@@ -2,9 +2,9 @@ import { BASE_URL } from "@/constants";
 import { request } from "@/utils/request";
 
 class ProductS {
-  async create(values: any, id: string) {
+  async create(values: FormData) {
     return request<ISuccessResponse<IProduct>>({
-      url: `${BASE_URL}/api/users/${id}/products`,
+      url: `${BASE_URL}/api/products`,
       isFormData: true,
       requestInit: {
         body: values,
@@ -14,9 +14,8 @@ class ProductS {
   }
 
   async delete(id: string) {
-    // TODO: HOVO change any to proper type
-    return request<ISuccessResponse<any>>({
-      url: `${BASE_URL}/api/users/${id}/products`,
+    return request<ISuccessResponse<{ _id: string }>>({
+      url: `${BASE_URL}/api/products/${id}`,
       requestInit: { method: "DELETE" },
     });
   }

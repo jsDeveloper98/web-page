@@ -1,10 +1,10 @@
 "use client";
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Button } from "antd";
 
 import { ProductService } from "@/services/Product.service";
 
-import { CardList, ICard } from "../cardList";
+import { CardList } from "../cardList";
 import { useMyProducts } from "./MyProducts.hooks";
 import { CreateCardModal } from "./createProductModal";
 

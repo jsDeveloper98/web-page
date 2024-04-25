@@ -1,16 +1,13 @@
-import { headers } from "next/headers";
-
+import { cookies } from "next/headers";
 import { BASE_URL } from "@/constants";
 import { MyProducts } from "@/components/myProducts";
 
 const MyProductsPage = async () => {
-  const headersList = headers();
-  const userId = headersList.get("userId");
-
-  const res = await fetch(`${BASE_URL}/api/users/${userId}/products`, {
+  const res = await fetch(`${BASE_URL}/api/my-products`, {
     cache: "no-store",
     headers: {
       "Content-Type": "application/json",
+      Cookie: cookies().toString(),
     },
   });
 
