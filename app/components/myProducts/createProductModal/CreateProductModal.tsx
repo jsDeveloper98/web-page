@@ -25,6 +25,7 @@ export const CreateCardModal = ({ onSuccess, isOpen, onClose }: IProps) => {
       onOk={form.submit}
       onCancel={onClose}
       confirmLoading={loading}
+      className="CreateCardModal"
     >
       <Form
         form={form}

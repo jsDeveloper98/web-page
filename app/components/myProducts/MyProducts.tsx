@@ -39,7 +39,7 @@ export const MyProducts = ({ products: initialProducts }: IProps) => {
   );
 
   return (
-    <div>
+    <div className="MyProducts">
       <div className="flex items-center justify-end mb-5">
         <Button onClick={() => setIsOpen(true)} type="primary">
           Create Product
