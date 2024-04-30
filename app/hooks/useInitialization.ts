@@ -2,9 +2,8 @@ import { useEffect } from "react";
 import { useShallow } from "zustand/react/shallow";
 
 import { useStore } from "@/store/useStore";
-import { AuthService } from "@/services/Auth.service";
 
-export const useInitialization = () => {
+export const useInitialization = (userData: IUserData) => {
   const { setUserData, setLoading } = useStore(
     useShallow(({ setUserData, setLoading }) => ({
       setUserData,
@@ -13,11 +12,9 @@ export const useInitialization = () => {
   );
 
   useEffect(() => {
-    AuthService.checkAuth().then((res) => {
-      if (res.data) {
-        setUserData(res.data);
-      }
-      setLoading(false);
-    });
-  }, [setLoading, setUserData]);
+    if (userData) {
+      setUserData(userData);
+    }
+    setLoading(false);
+  }, [setUserData, setLoading, userData]);
 };
