@@ -1,5 +1,5 @@
+import request from "@/utils/request";
 import { BASE_URL } from "@/constants";
-import { request } from "@/utils/request";
 
 const Home = () => {
   return (

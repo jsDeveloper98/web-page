@@ -1,8 +1,5 @@
 "use client";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { Button } from "antd";
-
-import { ProductService } from "@/services/Product.service";
+import { Button, Skeleton } from "antd";
 
 import { CardList } from "../cardList";
 import { useMyProducts } from "./MyProducts.hooks";
@@ -13,30 +10,8 @@ interface IProps {
 }
 
 export const MyProducts = ({ products: initialProducts }: IProps) => {
-  const {
-    isOpen,
-    setIsOpen,
-    productCards,
-    afterProductRemoved,
-    afterProductCreation,
-  } = useMyProducts(initialProducts);
-
-  const removeProduct = useCallback(
-    (id: string) =>
-      ProductService.delete(id).then(() => afterProductRemoved(id)),
-    [afterProductRemoved]
-  );
-
-  const actions = useMemo(
-    () => [
-      {
-        key: "remove",
-        className: "delete-icon",
-        onClick: (id: string) => removeProduct(id),
-      },
-    ],
-    [removeProduct]
-  );
+  const { isOpen, actions, setIsOpen, productCards, afterProductCreation } =
+    useMyProducts(initialProducts);
 
   return (
     <div className="MyProducts">

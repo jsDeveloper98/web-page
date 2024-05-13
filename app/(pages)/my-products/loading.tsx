@@ -1,17 +1,9 @@
-import { Skeleton } from "antd";
+import { Spin } from "antd";
 
 const MyProductsPageLoader = () => {
   return (
     <div className="MyProductsPageLoader">
-      <Skeleton loading={true} active={true} />
-      <Skeleton loading={true} active={true} />
-      <Skeleton loading={true} active={true} />
-      <Skeleton loading={true} active={true} />
-      <Skeleton loading={true} active={true} />
-      <Skeleton loading={true} active={true} />
-      <Skeleton loading={true} active={true} />
-      <Skeleton loading={true} active={true} />
-      <Skeleton loading={true} active={true} />
+      <Spin spinning={true} fullscreen />
     </div>
   );
 };

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
 import { Inter } from "next/font/google";
 
 import { BASE_URL } from "@/constants";
+import serverRequest from "@/utils/serverRequest";
 import { AppWrapper } from "@/components/AppWrapper";
 
 import "@/globals.css";
@@ -19,14 +19,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const res = await fetch(`${BASE_URL}/api/auth/check`, {
-    headers: {
-      "Content-Type": "application/json",
-      Cookie: cookies().toString(),
-    },
-  });
-
-  const userData = (await res.json()).data as IUserData;
+  const userData = await serverRequest<IUserData>(`${BASE_URL}/api/auth/check`);
 
   return (
     <html lang="en">

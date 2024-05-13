@@ -1,11 +1,9 @@
-import { Skeleton } from "antd";
+import { Spin } from "antd";
 
 const RegistrationPageLoader = () => {
   return (
-    <div className="RegistrationPageLoader flex items-center justify-center h-full flex-col">
-      <Skeleton title={false} loading={true} active={true} />
-      <Skeleton title={false} loading={true} active={true} />
-      <Skeleton title={false} loading={true} active={true} />
+    <div className="RegistrationPageLoader">
+      <Spin spinning={true} fullscreen />
     </div>
   );
 };

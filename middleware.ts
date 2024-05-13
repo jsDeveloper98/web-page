@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { verifyJWTToken } from "@/utils";
 import {
   AUTHORIZED_ROUTES_PATHS,
   UNAUTHORIZED_ROUTES_PATHS,
@@ -26,14 +27,15 @@ export const config = {
 
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get("token")?.value;
+  const res = await verifyJWTToken(token);
 
-  if (!token && AUTHORIZED_ROUTES_PATHS.includes(request.nextUrl.pathname)) {
+  if (!res && AUTHORIZED_ROUTES_PATHS.includes(request.nextUrl.pathname)) {
     const absoluteURL = new URL("/login", request.nextUrl.origin);
 
     return NextResponse.redirect(absoluteURL.toString());
   }
 
-  if (!!token && UNAUTHORIZED_ROUTES_PATHS.includes(request.nextUrl.pathname)) {
+  if (!!res && UNAUTHORIZED_ROUTES_PATHS.includes(request.nextUrl.pathname)) {
     const absoluteURL = new URL("/", request.nextUrl.origin);
 
     return NextResponse.redirect(absoluteURL.toString());

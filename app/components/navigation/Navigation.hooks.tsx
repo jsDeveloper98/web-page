@@ -102,7 +102,7 @@ export const useNavBar = () => {
     activePath: `/${pathname.slice(1)}`,
     filteredNavItems: [
       ...filteredNavItems,
-      ...(!!token ? [logoutNavItem] : []),
+      ...((!!token ? [logoutNavItem] : []) as ItemType[]),
     ],
   };
 };

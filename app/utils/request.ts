@@ -10,7 +10,7 @@ interface IProps {
   requestInit?: IRequestInit;
 }
 
-export const request = async <T>({
+const request = async <T>({
   url,
   isFormData = false,
   requestInit = { method: "GET" },
@@ -47,3 +47,5 @@ export const request = async <T>({
     throw new Error("An unknown error occurred.");
   }
 };
+
+export default request;

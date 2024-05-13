@@ -3,7 +3,8 @@ import { type ReactNode } from "react";
 import { ConfigProvider, theme } from "antd";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 
-import { NavBar } from "@/components/navBar";
+import { Modal } from "@/components/reusable/modal";
+import { Navigation } from "@/components/navigation";
 import { useInitialization } from "@/hooks/useInitialization";
 
 export const AppWrapper = ({
@@ -19,8 +20,9 @@ export const AppWrapper = ({
     <div className="AppWrapper h-screen">
       <ConfigProvider theme={{ algorithm: [theme.darkAlgorithm] }}>
         <AntdRegistry>
-          <NavBar />
+          <Navigation />
           <main className="container mx-auto p-10">{children}</main>
+          <Modal />
         </AntdRegistry>
       </ConfigProvider>
     </div>
