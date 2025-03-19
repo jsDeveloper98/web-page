@@ -1,5 +1,5 @@
 "use client";
-import { Button, Skeleton } from "antd";
+import { Button } from "antd";
 
 import { CardList } from "../cardList";
 import { useMyProducts } from "./MyProducts.hooks";

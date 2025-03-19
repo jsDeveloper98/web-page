@@ -9,17 +9,6 @@ const nextConfig = {
       },
     ],
   },
-  headers: () => [
-    {
-      source: "/:my-products",
-      headers: [
-        {
-          key: "Cache-Control",
-          value: "no-store",
-        },
-      ],
-    },
-  ],
 };
 
 export default nextConfig;

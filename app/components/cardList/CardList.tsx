@@ -10,6 +10,7 @@ export interface ICard {
   title: string;
   imgUrl: string;
   description: string;
+  onClick?: (id: string) => void;
 }
 
 interface ICardAction {
@@ -26,11 +27,12 @@ interface IProps {
 export const CardList = ({ cards, actions = [] }: IProps) => {
   return (
     <div className="CardList grid grid-cols-5 justify-between gap-y-12">
-      {cards.map(({ _id, description, title, imgUrl }) => (
+      {cards.map(({ _id, description, title, imgUrl, onClick }) => (
         <Card
           hoverable
           key={_id}
           className="w-60"
+          onClick={() => onClick?.(_id)}
           cover={
             <Image
               priority

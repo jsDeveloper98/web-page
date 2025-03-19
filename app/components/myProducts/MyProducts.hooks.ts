@@ -1,12 +1,15 @@
 import { useCallback, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useShallow } from "zustand/react/shallow";
 
 import { useModalStore } from "@/store/useModalStore";
 import { ProductService } from "@/services/Product.service";
 
 import { ICard } from "../cardList";
+import { MY_PRODUCTS_PATH } from "@/constants/paths";
 
 export const useMyProducts = (initialProducts: IProduct[]) => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [products, setProducts] = useState<IProduct[]>(initialProducts);
 
@@ -21,24 +24,26 @@ export const useMyProducts = (initialProducts: IProduct[]) => {
 
   const afterProductCreation = (product: IProduct) => {
     setIsOpen(false);
-    setProducts((prevState) => [product, ...prevState]);
+    setProducts([product, ...products]);
   };
 
-  const afterProductRemoved = useCallback((id: string) => {
-    setProducts((prevState) =>
-      prevState.filter((product) => product._id !== id)
-    );
-  }, []);
+  const afterProductRemoved = useCallback(
+    (id: string) => {
+      setProducts(products.filter((product) => product._id !== id));
+    },
+    [products, setProducts]
+  );
 
   const productCards = useMemo(
     (): ICard[] =>
       products.map(({ _id, description, title, image }) => ({
-        description,
         _id,
         title,
+        description,
         imgUrl: image,
+        onClick: (id) => router.push(`${MY_PRODUCTS_PATH}/${id}`),
       })),
-    [products]
+    [products, router]
   );
 
   const openRemoveConfirmation = useCallback(
